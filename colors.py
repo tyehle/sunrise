@@ -15,11 +15,16 @@ def read_data() -> pandas.DataFrame:
     # only go up to daylight (4500 K)
     sunrise = data[(1000 <= data["T"]) & (data["T"] <= 4500)]
     sunrise.reset_index(inplace=True)
-    print(sunrise.head())
+    print(sunrise)
 
     # plt.plot(sunrise["T"], sunrise["P"])
     # plt.yscale("log")
     # plt.show()
+
+    plt.plot(data["T"], data["R"], "r-",
+             data["T"], data["G"], "g-",
+             data["T"], data["B"], "b-")
+    plt.show()
 
     return sunrise
 
@@ -42,15 +47,18 @@ def brightness(k: float, t: float) -> float:
 
 def main(data: pandas.DataFrame):
     def data_gen() -> Tuple[float, float, float]:
+        done = False
         t = 0
         partial = 0
-        while True:
+        while not done:
             partial += 0.1
             if partial >= 1:
                 t += 1
                 partial -= 1
             if t+1 >= len(data):
-                t = 0
+                partial = 1
+                t -= 1
+                done = True
 
             low = data.loc[t]
             high = data.loc[t + 1]
