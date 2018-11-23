@@ -9,13 +9,12 @@ from typing import Tuple
 
 def read_data() -> pandas.DataFrame:
     df = pandas.read_csv("bb_data.txt", sep="\\s+")
-    data = df[df["CMF"] == "10deg"].drop(columns=["K", "CMF", "x", "y"])
+    data = df[df["CMF"] == "10deg"][["T", "R", "G", "B"]]
 
     # start at (1000 K for early morning)
     # only go up to daylight (4500 K)
-    sunrise = data[(1000 <= data["T"]) & (data["T"] <= 4500)]
-    sunrise.reset_index(inplace=True)
-    print(sunrise)
+    sunrise = data[(1000 <= data["T"]) & (data["T"] <= 5500)]
+    sunrise.reset_index(drop=True, inplace=True)
 
     # plt.plot(sunrise["T"], sunrise["P"])
     # plt.yscale("log")
@@ -25,6 +24,8 @@ def read_data() -> pandas.DataFrame:
              data["T"], data["G"], "g-",
              data["T"], data["B"], "b-")
     plt.show()
+
+    sunrise.to_csv("sunrise.csv", index=False)
 
     return sunrise
 
