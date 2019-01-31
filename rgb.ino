@@ -1,4 +1,7 @@
 #include <math.h>
+#include <Wire.h>
+
+#include "RTClib.h"
 
 #define DATA_SIZE 36
 
@@ -51,11 +54,12 @@ float colorData[DATA_SIZE][4] = {
 //  {5500,1.0,0.8403,0.7437}
 };
 
+// Output Pins
 int red = 9;
 int green = 10;
 int blue = 11;
 
-/* 
+/*
  * FFFFFF output = 87, 97, 185
  * normalized white = 255, 229, 120
  */
@@ -63,17 +67,40 @@ int rMax = 255;
 int gMax = 229;
 int bMax = 120;
 
-double step_size = 0.01;
-double t;
+int wakeTime;
+int upTime;
+int dayTime;
+int offTime;
+
+char out[21];
+RTC_PCF8523 rtc;
 
 void setup() {
-  Serial.begin(9600);
-  
-  t = 0.0;
-  
+  Serial.begin(115200);
+
+  if(!rtc.begin()) {
+    Serial.println("Couldn't find RTC");
+    exit(1);
+  }
+
+  if(!rtc.initialized()) {
+    Serial.println("RTC is not running!");
+    // set the time to the time this was compiled
+    rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
+    // set an explicit date and time
+    // rtc.adjust(DateTime(2019, 1, 13, 15, 33, 0));
+  }
+  rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
+  Serial.print("Now: "); printlnDate(rtc.now());
+
   pinMode(red, OUTPUT);
   pinMode(green, OUTPUT);
   pinMode(blue, OUTPUT);
+
+  wakeTime = daySeconds(DateTime(F(__DATE__), F(__TIME__)));
+  upTime   = wakeTime + 60;
+  dayTime  = upTime + 60;
+  offTime  = dayTime + 60;
 }
 
 // Brightness scalar [0, 1] for a time on [0, 1]
@@ -83,35 +110,97 @@ double brightness(double t) {
   return min(1.0, k * log(t + 1/u) + k * log(u));
 }
 
-// Brightness [0, 1] of a color chanel (1, 2, 3) for a time t on [0, DATA_SIZE - 1)
-double color(int channel, double t) {
-  double howBright = brightness(t / (DATA_SIZE - 1));
-  
-  double low = colorData[(int) t][channel];
-  double high = colorData[(int) t + 1][channel];
-  
-  double colorBrightness = low + (high - low)*(t - ((int)t));
-  
+// Brightness [0, 1] of a color chanel (1, 2, 3) for a time t on [0, 1]
+double color(int channel, double b, double h) {
+  double howBright = brightness(b);
+  double dataTime = h * (DATA_SIZE - 1);
+
+  double low = colorData[(int) dataTime][channel];
+  double high = colorData[(int) dataTime + 1][channel];
+
+  double colorBrightness = low + (high - low)*(dataTime - ((int)dataTime));
+
   return colorBrightness * howBright;
 }
 
-void loop() {
-  int r = (int)(color(1, t) * rMax);
-  int g = (int)(color(2, t) * gMax);
-  int b = (int)(color(3, t) * bMax);
-
-  Serial.print(t); Serial.print(",\t");
-  Serial.print(r); Serial.print(",\t");
-  Serial.print(g); Serial.print(",\t");
-  Serial.print(b); Serial.print("\n");
+// Set the lights for a time value on [0, 1]
+void set_lights(double power, double hue, bool chatty) {
+  if(power < 0) power = 0;
+  if(power > 1) power = 1;
+  if(hue < 0) hue = 0;
+  if(hue > 1) hue = 1;
   
+  int r = (int)(color(1, power, hue) * rMax);
+  int g = (int)(color(2, power, hue) * gMax);
+  int b = (int)(color(3, power, hue) * bMax);
+
+  if(chatty) {
+    Serial.print(power); Serial.print(",\t");
+    Serial.print(hue); Serial.print(",\t");
+    Serial.print(r); Serial.print(",\t");
+    Serial.print(g); Serial.print(",\t");
+    Serial.print(b); Serial.print("\n");
+  }
+
   analogWrite(red,   r);
   analogWrite(green, g);
   analogWrite(blue,  b);
-
-  if(! (t + step_size >= DATA_SIZE - 1)) {
-    t += step_size;
-  }
-
-  delay(10);
 }
+
+void printlnDate(DateTime date) {
+  sprintf(out, "%04d-%02d-%02dT%02d:%02d:%02d\n",
+          date.year(), date.month(), date.day(),
+          date.hour(), date.minute(), date.second());
+  Serial.print(out);
+}
+
+int daySeconds(DateTime date) {
+  return date.hour() * 3600 + date.minute() * 60 + date.second();
+}
+
+void loop() {
+  // What mode are we in?
+  int now = daySeconds(rtc.now());
+  if(wakeTime <= now && now < upTime) {
+    Serial.println("Waking up");
+    wake_update();
+    delay(10);
+  } else if(upTime <= now && now < dayTime) {
+    Serial.println("Holding");
+    up_update();
+    delay(1000);
+  } else if(dayTime <= now && now < offTime) {
+    Serial.println("powering down");
+    day_update();
+    delay(10);
+  } else {
+    Serial.println("Off");
+    off_update();
+    delay(60000);
+  }
+}
+
+// modes: waking, on, dimming, off
+
+void wake_update() {
+  int span = upTime - wakeTime;
+  int howFar = daySeconds(rtc.now()) - wakeTime;
+  double t = howFar / (double)span;
+  set_lights(t, t, true);
+}
+
+void up_update() {
+  set_lights(1, 1, false);
+}
+
+void day_update() {
+  int span = offTime - dayTime;
+  int howFar = daySeconds(rtc.now()) - dayTime;
+  double t = howFar / (double)span;
+  set_lights(t, 1, true);
+}
+
+void off_update() {
+  set_lights(0, 0, false);
+}
+
