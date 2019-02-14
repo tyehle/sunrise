@@ -164,7 +164,7 @@ void loop() {
   if(wakeTime <= now && now < upTime) {
     Serial.println("Waking up");
     wake_update();
-    delay(10);
+    delay(1000);
   } else if(upTime <= now && now < dayTime) {
     Serial.println("Holding");
     up_update();
@@ -172,7 +172,7 @@ void loop() {
   } else if(dayTime <= now && now < offTime) {
     Serial.println("powering down");
     day_update();
-    delay(10);
+    delay(1000);
   } else {
     Serial.println("Off");
     off_update();
@@ -196,11 +196,12 @@ void up_update() {
 void day_update() {
   int span = offTime - dayTime;
   int howFar = daySeconds(rtc.now()) - dayTime;
-  double t = howFar / (double)span;
+  double t = 1 - (howFar / (double)span);
   set_lights(t, 1, true);
 }
 
 void off_update() {
   set_lights(0, 0, false);
 }
+
 
