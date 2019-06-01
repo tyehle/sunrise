@@ -90,17 +90,18 @@ void setup() {
     // set an explicit date and time
     // rtc.adjust(DateTime(2019, 1, 13, 15, 33, 0));
   }
-  rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
+//  rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
   Serial.print("Now: "); printlnDate(rtc.now());
 
   pinMode(red, OUTPUT);
   pinMode(green, OUTPUT);
   pinMode(blue, OUTPUT);
 
-  wakeTime = daySeconds(DateTime(F(__DATE__), F(__TIME__)));
-  upTime   = wakeTime + 60;
-  dayTime  = upTime + 60;
-  offTime  = dayTime + 60;
+  wakeTime = daySeconds(DateTime(1970, 01, 01, 07, 15, 0));
+//  wakeTime = daySeconds(DateTime(F(__DATE__), F(__TIME__)));
+  upTime   = wakeTime + 60*30;
+  dayTime  = upTime + 60*30;
+  offTime  = dayTime + 60*30;
 }
 
 // Brightness scalar [0, 1] for a time on [0, 1]
@@ -176,7 +177,7 @@ void loop() {
   } else {
     Serial.println("Off");
     off_update();
-    delay(60000);
+    delay(1000);
   }
 }
 
