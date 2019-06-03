@@ -851,9 +851,9 @@ LED_G
 Text GLabel 2800 5450 2    50   Input ~ 0
 LED_B
 Text GLabel 10050 3600 0    50   Input ~ 0
-LED_G
-Text GLabel 10050 3700 0    50   Input ~ 0
 LED_R
+Text GLabel 10050 3700 0    50   Input ~ 0
+LED_G
 Text GLabel 10050 3800 0    50   Input ~ 0
 LED_B
 Wire Wire Line
