@@ -2,7 +2,7 @@
 <export version="D">
   <design>
     <source>/home/tobin/Arduino/rgb/sunrise-board/sunrise-board.sch</source>
-    <date>Sun 02 Jun 2019 08:27:48 PM PDT</date>
+    <date>Sun 02 Jun 2019 09:13:37 PM PDT</date>
     <tool>Eeschema 5.0.2-bee76a0~70~ubuntu16.04.1</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -109,6 +109,7 @@
     </comp>
     <comp ref="BT1">
       <value>CR1220 3.3V</value>
+      <footprint>Sunrise:BatteryHolder_CR1220_THT</footprint>
       <datasheet>~</datasheet>
       <libsource lib="Device" part="Battery_Cell" description="Single-cell battery"/>
       <sheetpath names="/" tstamps="/"/>

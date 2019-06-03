@@ -6,13 +6,13 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title "Sunrise Alarm"
-Date "2019-06-01"
-Rev "1.0.0"
+Date "2019-06-02"
+Rev "1"
 Comp ""
-Comment1 "Tobin Yehle"
-Comment2 ""
-Comment3 ""
-Comment4 ""
+Comment1 "Arduino Mini and Arduino Pro Mini design by Team Arduino and Spark Fun Electronics"
+Comment2 "creativecommons.org/licenses/by-nc-sa/4.0"
+Comment3 "Licence: CC BY-NC-SA"
+Comment4 "Author: Tobin Yehle"
 $EndDescr
 $Comp
 L Transistor_FET:IRLZ34N Q1

@@ -6,13 +6,13 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title "Sunrise Alarm"
-Date "2019-06-01"
-Rev "1.0.0"
-Comp ""
-Comment1 "Tobin Yehle"
-Comment2 ""
-Comment3 ""
-Comment4 ""
+Date "2019-06-02"
+Rev "1"
+Comp "Good"
+Comment1 "Arduino Mini and Arduino Pro Mini design by Team Arduino and Spark Fun Electronics"
+Comment2 "creativecommons.org/licenses/by-nc-sa/4.0"
+Comment3 "Licence: CC BY-NC-SA"
+Comment4 "Author: Tobin Yehle"
 $EndDescr
 $Comp
 L Transistor_FET:IRLZ34N Q1
@@ -279,7 +279,7 @@ U 1 1 5CF29BE6
 P 5400 5650
 F 0 "BT1" H 5518 5746 50  0000 L CNN
 F 1 "CR1220 3.3V" H 5518 5655 50  0000 L CNN
-F 2 "" V 5400 5710 50  0001 C CNN
+F 2 "Sunrise:BatteryHolder_CR1220_THT" V 5400 5710 50  0001 C CNN
 F 3 "~" V 5400 5710 50  0001 C CNN
 	1    5400 5650
 	1    0    0    -1  
