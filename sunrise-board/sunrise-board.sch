@@ -6,8 +6,8 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title "Sunrise Alarm"
-Date "2019-06-02"
-Rev "1"
+Date "2019-06-04"
+Rev "v1"
 Comp ""
 Comment1 "Arduino Mini and Arduino Pro Mini design by Team Arduino and Spark Fun Electronics"
 Comment2 "creativecommons.org/licenses/by-nc-sa/4.0"
