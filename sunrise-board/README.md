@@ -1,5 +1,5 @@
 # Sunrise Alarm Hardware
-This board is driven by an ATmega238P and has the a similar header layout as an arduino pro mini for debugging or expansion. It also has an RTC and three of the PWM outputs are gated through MOSFETs to provide high power chanells.
+This board is driven by an ATmega238P and has the a similar header layout as an arduino pro mini for debugging or expansion. It also has an RTC and three of the PWM outputs are gated through MOSFETs to provide high power channels.
 
 # Schematic
 ![schematic](sunrise-board.svg)
