@@ -142,7 +142,7 @@ L Connector:Barrel_Jack J1
 U 1 1 5C6E83EF
 P 1350 1650
 F 0 "J1" H 1405 1975 50  0000 C CNN
-F 1 "Barrel Jack 12V" H 1405 1884 50  0000 C CNN
+F 1 "2.1mm Jack" H 1405 1884 50  0000 C CNN
 F 2 "Connector_BarrelJack:BarrelJack_Horizontal" H 1400 1610 50  0001 C CNN
 F 3 "https://www.cui.com/product/resource/pj-102a.pdf" H 1400 1610 50  0001 C CNN
 F 4 "https://www.mouser.com/ProductDetail/PJ-102A" H 0   0   50  0001 C CNN "Link"
