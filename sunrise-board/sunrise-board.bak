@@ -10,8 +10,8 @@ Date "2019-06-24"
 Rev "v2"
 Comp ""
 Comment1 "Arduino Mini and Arduino Pro Mini design by Team Arduino and Spark Fun Electronics"
-Comment2 "creativecommons.org/licenses/by-nc-sa/4.0"
-Comment3 "Licence: CC BY-NC-SA"
+Comment2 "Licence: CC BY-NC-SA"
+Comment3 "Source: github.com/tyehle/sunrise"
 Comment4 "Author: Tobin Yehle"
 $EndDescr
 $Comp
