@@ -6,8 +6,8 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title "Sunrise Alarm"
-Date "2019-06-04"
-Rev "v1"
+Date "2019-06-24"
+Rev "v2"
 Comp ""
 Comment1 "Arduino Mini and Arduino Pro Mini design by Team Arduino and Spark Fun Electronics"
 Comment2 "creativecommons.org/licenses/by-nc-sa/4.0"
@@ -464,19 +464,6 @@ Wire Wire Line
 Wire Wire Line
 	2000 1550 2000 1050
 Connection ~ 2000 1550
-$Comp
-L Regulator_Linear:uA7805 U1
-U 1 1 5CF45A5F
-P 2650 1550
-F 0 "U1" H 2650 1792 50  0000 C CNN
-F 1 "L4931CZ50-AP" H 2650 1701 50  0000 C CNN
-F 2 "Package_TO_SOT_THT:TO-92_Inline_Wide" H 2675 1400 50  0001 L CIN
-F 3 "https://www.st.com/resource/en/datasheet/l4931.pdf" H 2650 1500 50  0001 C CNN
-F 4 "https://www.mouser.com/ProductDetail/511-L4931CZ50-AP" H 0   0   50  0001 C CNN "Link"
-F 5 "L4931CZ50-AP" H 0   0   50  0001 C CNN "PartNumber"
-	1    2650 1550
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	2350 1550 2000 1550
 $Comp
@@ -776,9 +763,9 @@ P 9050 3800
 F 0 "J3" H 8969 3275 50  0000 C CNN
 F 1 "FTDI Basic" H 8969 3366 50  0000 C CNN
 F 2 "Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical" H 9050 3800 50  0001 C CNN
-F 3 "~" H 9050 3800 50  0001 C CNN
-F 4 "~" H 0   0   50  0001 C CNN "Link"
-F 5 "~" H 0   0   50  0001 C CNN "PartNumber"
+F 3 "http://suddendocs.samtec.com/catalog_english/tsw_th.pdf" H 9050 3800 50  0001 C CNN
+F 4 "https://www.mouser.com/ProductDetail/TSW-106-08-T-S-RA" H 0   0   50  0001 C CNN "Link"
+F 5 "TSW-106-08-T-S-RA" H 0   0   50  0001 C CNN "PartNumber"
 	1    9050 3800
 	1    0    0    1   
 $EndComp
@@ -918,7 +905,7 @@ F 0 "J6" H 10430 4242 50  0000 L CNN
 F 1 "Header" H 10430 4151 50  0000 L CNN
 F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 10350 4250 50  0001 C CNN
 F 3 "http://suddendocs.samtec.com/catalog_english/tsw_th.pdf" H 10350 4250 50  0001 C CNN
-F 4 "https://www.mouser.com/ProductDetail/TSW-130-07-T-S" H 0   0   50  0001 C CNN "Link"
+F 4 "~" H 0   0   50  0001 C CNN "Link"
 F 5 "~" H 0   0   50  0001 C CNN "PartNumber"
 	1    10350 4250
 	1    0    0    -1  
@@ -931,7 +918,7 @@ F 0 "J2" H 9150 2200 50  0000 L CNN
 F 1 "Header" H 9150 2100 50  0000 L CNN
 F 2 "Connector_PinHeader_2.54mm:PinHeader_1x12_P2.54mm_Vertical" H 9050 2150 50  0001 C CNN
 F 3 "http://suddendocs.samtec.com/catalog_english/tsw_th.pdf" H 9050 2150 50  0001 C CNN
-F 4 "https://www.mouser.com/ProductDetail/TSW-130-07-T-S" H 0   0   50  0001 C CNN "Link"
+F 4 "~" H 0   0   50  0001 C CNN "Link"
 F 5 "~" H 0   0   50  0001 C CNN "PartNumber"
 	1    9050 2150
 	1    0    0    -1  
@@ -998,7 +985,7 @@ F 0 "J4" H 10450 2200 50  0000 L CNN
 F 1 "Header" H 10450 2100 50  0000 L CNN
 F 2 "Connector_PinHeader_2.54mm:PinHeader_1x12_P2.54mm_Vertical" H 10350 2150 50  0001 C CNN
 F 3 "http://suddendocs.samtec.com/catalog_english/tsw_th.pdf" H 10350 2150 50  0001 C CNN
-F 4 "https://www.mouser.com/ProductDetail/TSW-130-07-T-S" H 0   0   50  0001 C CNN "Link"
+F 4 "~" H 0   0   50  0001 C CNN "Link"
 F 5 "~" H 0   0   50  0001 C CNN "PartNumber"
 	1    10350 2150
 	1    0    0    -1  
@@ -1227,4 +1214,17 @@ Wire Wire Line
 Connection ~ 5200 6050
 Wire Wire Line
 	5200 6050 5500 6050
+$Comp
+L sunrise:L4931 U1
+U 1 1 5D1308ED
+P 2650 1550
+F 0 "U1" H 2650 1815 50  0000 C CNN
+F 1 "L4931" H 2650 1724 50  0000 C CNN
+F 2 "Package_TO_SOT_THT:TO-92_Inline_Wide" H 2650 1550 50  0001 C CNN
+F 3 "https://www.st.com/resource/en/datasheet/l4931.pdf" H 2650 1550 50  0001 C CNN
+F 4 "https://www.mouser.com/ProductDetail/511-L4931CZ50-AP" H -700 350 50  0001 C CNN "Link"
+F 5 "L4931CZ50-AP" H -700 350 50  0001 C CNN "PartNumber"
+	1    2650 1550
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

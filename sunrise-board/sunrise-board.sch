@@ -6,12 +6,12 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title "Sunrise Alarm"
-Date "2019-06-04"
-Rev "v1"
+Date "2019-06-24"
+Rev "v2"
 Comp ""
 Comment1 "Arduino Mini and Arduino Pro Mini design by Team Arduino and Spark Fun Electronics"
-Comment2 "creativecommons.org/licenses/by-nc-sa/4.0"
-Comment3 "Licence: CC BY-NC-SA"
+Comment2 "Licence: CC BY-NC-SA"
+Comment3 "Source: github.com/tyehle/sunrise"
 Comment4 "Author: Tobin Yehle"
 $EndDescr
 $Comp
@@ -464,19 +464,6 @@ Wire Wire Line
 Wire Wire Line
 	2000 1550 2000 1050
 Connection ~ 2000 1550
-$Comp
-L Regulator_Linear:uA7805 U1
-U 1 1 5CF45A5F
-P 2650 1550
-F 0 "U1" H 2650 1792 50  0000 C CNN
-F 1 "L4931CZ50-AP" H 2650 1701 50  0000 C CNN
-F 2 "Package_TO_SOT_THT:TO-92_Inline_Wide" H 2675 1400 50  0001 L CIN
-F 3 "https://www.st.com/resource/en/datasheet/l4931.pdf" H 2650 1500 50  0001 C CNN
-F 4 "https://www.mouser.com/ProductDetail/511-L4931CZ50-AP" H 0   0   50  0001 C CNN "Link"
-F 5 "L4931CZ50-AP" H 0   0   50  0001 C CNN "PartNumber"
-	1    2650 1550
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	2350 1550 2000 1550
 $Comp
@@ -1227,4 +1214,17 @@ Wire Wire Line
 Connection ~ 5200 6050
 Wire Wire Line
 	5200 6050 5500 6050
+$Comp
+L sunrise:L4931 U1
+U 1 1 5D1308ED
+P 2650 1550
+F 0 "U1" H 2650 1815 50  0000 C CNN
+F 1 "L4931" H 2650 1724 50  0000 C CNN
+F 2 "Package_TO_SOT_THT:TO-92_Inline_Wide" H 2650 1550 50  0001 C CNN
+F 3 "https://www.st.com/resource/en/datasheet/l4931.pdf" H 2650 1550 50  0001 C CNN
+F 4 "https://www.mouser.com/ProductDetail/511-L4931CZ50-AP" H -700 350 50  0001 C CNN "Link"
+F 5 "L4931CZ50-AP" H -700 350 50  0001 C CNN "PartNumber"
+	1    2650 1550
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

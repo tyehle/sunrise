@@ -1,3 +1,4 @@
 (sym_lib_table
   (lib (name sunrise)(type Legacy)(uri /home/tobin/Arduino/rgb/sunrise-board/sunrise.lib)(options "")(descr ""))
+  (lib (name sunrise-boad)(type Legacy)(uri /home/tobin/Arduino/rgb/sunrise-board/sunrise-boad.lib)(options "")(descr ""))
 )
