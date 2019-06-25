@@ -23,6 +23,7 @@ F 1 "STP16NF06" H 2605 3955 50  0000 L CNN
 F 2 "Package_TO_SOT_THT:TO-220-3_Vertical" H 2650 3925 50  0001 L CIN
 F 3 "https://www.st.com/resource/en/datasheet/cd00002501.pdf" H 2400 4000 50  0001 L CNN
 F 4 "https://www.mouser.com/ProductDetail/STP16NF06" H 0   0   50  0001 C CNN "Link"
+F 5 "STP16NF06" H 0   0   50  0001 C CNN "PartNumber"
 	1    2400 4000
 	1    0    0    -1  
 $EndComp
@@ -33,7 +34,9 @@ P 1900 4150
 F 0 "R1" H 1968 4196 50  0000 L CNN
 F 1 "10k" H 1968 4105 50  0000 L CNN
 F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 1940 4140 50  0001 C CNN
-F 3 "~" H 1900 4150 50  0001 C CNN
+F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/throughhole/Yageo_LR_CFR_2013.pdf" H 1900 4150 50  0001 C CNN
+F 4 "https://www.mouser.com/ProductDetail/CFR-25JT-52-10K" H 0   0   50  0001 C CNN "Link"
+F 5 "CFR-25JT-52-10K" H 0   0   50  0001 C CNN "PartNumber"
 	1    1900 4150
 	1    0    0    -1  
 $EndComp
@@ -64,6 +67,7 @@ F 1 "STP16NF06" H 2605 4805 50  0000 L CNN
 F 2 "Package_TO_SOT_THT:TO-220-3_Vertical" H 2650 4775 50  0001 L CIN
 F 3 "https://www.st.com/resource/en/datasheet/cd00002501.pdf" H 2400 4850 50  0001 L CNN
 F 4 "https://www.mouser.com/ProductDetail/STP16NF06" H 0   0   50  0001 C CNN "Link"
+F 5 "STP16NF06" H 0   0   50  0001 C CNN "PartNumber"
 	1    2400 4850
 	1    0    0    -1  
 $EndComp
@@ -74,7 +78,9 @@ P 1900 5000
 F 0 "R2" H 1968 5046 50  0000 L CNN
 F 1 "10k" H 1968 4955 50  0000 L CNN
 F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 1940 4990 50  0001 C CNN
-F 3 "~" H 1900 5000 50  0001 C CNN
+F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/throughhole/Yageo_LR_CFR_2013.pdf" H 1900 5000 50  0001 C CNN
+F 4 "https://www.mouser.com/ProductDetail/CFR-25JT-52-10K" H 0   0   50  0001 C CNN "Link"
+F 5 "CFR-25JT-52-10K" H 0   0   50  0001 C CNN "PartNumber"
 	1    1900 5000
 	1    0    0    -1  
 $EndComp
@@ -105,6 +111,7 @@ F 1 "STP16NF06" H 2605 5655 50  0000 L CNN
 F 2 "Package_TO_SOT_THT:TO-220-3_Vertical" H 2650 5625 50  0001 L CIN
 F 3 "https://www.st.com/resource/en/datasheet/cd00002501.pdf" H 2400 5700 50  0001 L CNN
 F 4 "https://www.mouser.com/ProductDetail/STP16NF06" H 0   0   50  0001 C CNN "Link"
+F 5 "STP16NF06" H 0   0   50  0001 C CNN "PartNumber"
 	1    2400 5700
 	1    0    0    -1  
 $EndComp
@@ -115,7 +122,9 @@ P 1900 5850
 F 0 "R3" H 1968 5896 50  0000 L CNN
 F 1 "10k" H 1968 5805 50  0000 L CNN
 F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 1940 5840 50  0001 C CNN
-F 3 "~" H 1900 5850 50  0001 C CNN
+F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/throughhole/Yageo_LR_CFR_2013.pdf" H 1900 5850 50  0001 C CNN
+F 4 "https://www.mouser.com/ProductDetail/CFR-25JT-52-10K" H 0   0   50  0001 C CNN "Link"
+F 5 "CFR-25JT-52-10K" H 0   0   50  0001 C CNN "PartNumber"
 	1    1900 5850
 	1    0    0    -1  
 $EndComp
@@ -146,6 +155,7 @@ F 1 "2.1mm Jack" H 1405 1884 50  0000 C CNN
 F 2 "Connector_BarrelJack:BarrelJack_Horizontal" H 1400 1610 50  0001 C CNN
 F 3 "https://www.cui.com/product/resource/pj-102a.pdf" H 1400 1610 50  0001 C CNN
 F 4 "https://www.mouser.com/ProductDetail/PJ-102A" H 0   0   50  0001 C CNN "Link"
+F 5 "PJ-102A" H 0   0   50  0001 C CNN "PartNumber"
 	1    1350 1650
 	1    0    0    -1  
 $EndComp
@@ -164,48 +174,51 @@ F 1 "ATmega328P-PU" H 5559 2955 50  0000 R CNN
 F 2 "Package_DIP:DIP-28_W7.62mm" H 6200 3000 50  0001 C CIN
 F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/ATmega48A-PA-88A-PA-168A-PA-328-P-DS-DS40002061A.pdf" H 6200 3000 50  0001 C CNN
 F 4 "https://www.mouser.com/ProductDetail/ATMEGA328P-PU" H 0   0   50  0001 C CNN "Link"
+F 5 "ATMEGA328P-PU" H 0   0   50  0001 C CNN "PartNumber"
 	1    6200 3000
 	1    0    0    -1  
 $EndComp
 $Comp
 L Timer_RTC:DS1307+ U2
 U 1 1 5CF1ED9A
-P 5200 6350
-F 0 "U2" H 5741 6396 50  0000 L CNN
-F 1 "DS1307+" H 5741 6305 50  0000 L CNN
-F 2 "Package_DIP:DIP-8_W7.62mm" H 5200 5850 50  0001 C CNN
-F 3 "https://datasheets.maximintegrated.com/en/ds/DS1307.pdf" H 5200 6150 50  0001 C CNN
-F 4 "https://www.mouser.com/ProductDetail/700-DS1307" H 5200 6350 50  0001 C CNN "Link"
-	1    5200 6350
+P 4950 6600
+F 0 "U2" H 5491 6646 50  0000 L CNN
+F 1 "DS1307+" H 5491 6555 50  0000 L CNN
+F 2 "Package_DIP:DIP-8_W7.62mm" H 4950 6100 50  0001 C CNN
+F 3 "https://datasheets.maximintegrated.com/en/ds/DS1307.pdf" H 4950 6400 50  0001 C CNN
+F 4 "https://www.mouser.com/ProductDetail/700-DS1307" H 4950 6600 50  0001 C CNN "Link"
+F 5 "DS1307+" H 0   0   50  0001 C CNN "PartNumber"
+	1    4950 6600
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:Crystal Y1
 U 1 1 5CF1EFD4
-P 4450 6600
-F 0 "Y1" V 4400 6450 50  0000 R CNN
-F 1 "32.768Hz" V 4500 6450 50  0000 R CNN
-F 2 "Crystal:Crystal_C26-LF_D2.1mm_L6.5mm_Horizontal_1EP_style2" H 4450 6600 50  0001 C CNN
-F 3 "https://www.iqdfrequencyproducts.com/products/pn/LFXTAL002997Bulk.pdf" H 4450 6600 50  0001 C CNN
-F 4 "https://www.mouser.com/ProductDetail/449-LFXTAL002997BULK" H 0   0   50  0001 C CNN "Link"
-	1    4450 6600
+P 4200 6850
+F 0 "Y1" V 4150 6700 50  0000 R CNN
+F 1 "32.768Hz" V 4250 6700 50  0000 R CNN
+F 2 "Crystal:Crystal_C26-LF_D2.1mm_L6.5mm_Horizontal_1EP_style2" H 4200 6850 50  0001 C CNN
+F 3 "https://www.iqdfrequencyproducts.com/products/pn/LFXTAL002997Bulk.pdf" H 4200 6850 50  0001 C CNN
+F 4 "https://www.mouser.com/ProductDetail/449-LFXTAL002997BULK" H -250 250 50  0001 C CNN "Link"
+F 5 "LFXTAL002997Bulk" H 0   0   50  0001 C CNN "PartNumber"
+	1    4200 6850
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	4700 6550 4700 6750
+	4450 6800 4450 7000
 Wire Wire Line
-	4700 6750 4450 6750
+	4450 7000 4200 7000
 Wire Wire Line
-	4700 6450 4450 6450
+	4450 6700 4200 6700
 $Comp
 L power:GND #PWR017
 U 1 1 5CF2019F
-P 5200 6750
-F 0 "#PWR017" H 5200 6500 50  0001 C CNN
-F 1 "GND" H 5205 6577 50  0000 C CNN
-F 2 "" H 5200 6750 50  0001 C CNN
-F 3 "" H 5200 6750 50  0001 C CNN
-	1    5200 6750
+P 4950 7000
+F 0 "#PWR017" H 4950 6750 50  0001 C CNN
+F 1 "GND" H 4955 6827 50  0000 C CNN
+F 2 "" H 4950 7000 50  0001 C CNN
+F 3 "" H 4950 7000 50  0001 C CNN
+	1    4950 7000
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -222,12 +235,12 @@ $EndComp
 $Comp
 L power:VCC #PWR016
 U 1 1 5CF20678
-P 5100 5450
-F 0 "#PWR016" H 5100 5300 50  0001 C CNN
-F 1 "VCC" H 5117 5623 50  0000 C CNN
-F 2 "" H 5100 5450 50  0001 C CNN
-F 3 "" H 5100 5450 50  0001 C CNN
-	1    5100 5450
+P 4850 5700
+F 0 "#PWR016" H 4850 5550 50  0001 C CNN
+F 1 "VCC" H 4867 5873 50  0000 C CNN
+F 2 "" H 4850 5700 50  0001 C CNN
+F 3 "" H 4850 5700 50  0001 C CNN
+	1    4850 5700
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -250,7 +263,9 @@ P 5500 1950
 F 0 "C4" H 5386 1996 50  0000 R CNN
 F 1 "0.1uF" H 5386 1905 50  0000 R CNN
 F 2 "Capacitor_THT:C_Disc_D4.7mm_W2.5mm_P5.00mm" H 5538 1800 50  0001 C CNN
-F 3 "~" H 5500 1950 50  0001 C CNN
+F 3 "https://www.vishay.com/docs/45171/kseries.pdf" H 5500 1950 50  0001 C CNN
+F 4 "https://www.mouser.com/ProductDetail/K104K15X7RF53H5" H 0   0   50  0001 C CNN "Link"
+F 5 "K104K15X7RF53H5" H 0   0   50  0001 C CNN "PartNumber"
 	1    5500 1950
 	1    0    0    -1  
 $EndComp
@@ -283,32 +298,29 @@ Wire Wire Line
 $Comp
 L Device:Battery_Cell BT1
 U 1 1 5CF29BE6
-P 5400 5650
-F 0 "BT1" H 5518 5746 50  0000 L CNN
-F 1 "CR1220 3.3V" H 5518 5655 50  0000 L CNN
-F 2 "Sunrise:BatteryHolder_CR1220_THT" V 5400 5710 50  0001 C CNN
-F 3 "https://linxtechnologies.com/wp/wp-content/uploads/bat-hld-012-thm.pdf" V 5400 5710 50  0001 C CNN
-F 4 "https://www.mouser.com/ProductDetail/712-BAT-HLD-012-THM" H 0   0   50  0001 C CNN "Link"
-	1    5400 5650
-	1    0    0    -1  
+P 5700 6050
+F 0 "BT1" V 5955 6100 50  0000 C CNN
+F 1 "CR1220 3.3V" V 5864 6100 50  0000 C CNN
+F 2 "Sunrise:BatteryHolder_CR1220_THT" V 5700 6110 50  0001 C CNN
+F 3 "https://linxtechnologies.com/wp/wp-content/uploads/bat-hld-012-thm.pdf" V 5700 6110 50  0001 C CNN
+F 4 "https://www.mouser.com/ProductDetail/712-BAT-HLD-012-THM" H 300 400 50  0001 C CNN "Link"
+F 5 "BAT-HLD-012-THM" H 0   0   50  0001 C CNN "PartNumber"
+	1    5700 6050
+	0    -1   -1   0   
 $EndComp
 $Comp
 L power:GND #PWR018
 U 1 1 5CF29DCD
-P 5400 5750
-F 0 "#PWR018" H 5400 5500 50  0001 C CNN
-F 1 "GND" H 5405 5577 50  0000 C CNN
-F 2 "" H 5400 5750 50  0001 C CNN
-F 3 "" H 5400 5750 50  0001 C CNN
-	1    5400 5750
+P 5900 6150
+F 0 "#PWR018" H 5900 5900 50  0001 C CNN
+F 1 "GND" H 5905 5977 50  0000 C CNN
+F 2 "" H 5900 6150 50  0001 C CNN
+F 3 "" H 5900 6150 50  0001 C CNN
+	1    5900 6150
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	5200 5450 5200 5950
-Wire Wire Line
-	5100 5950 5100 5450
-Wire Wire Line
-	5400 5450 5200 5450
+	4850 6200 4850 5700
 $Comp
 L Device:C C5
 U 1 1 5CF2C232
@@ -316,7 +328,9 @@ P 5500 4000
 F 0 "C5" H 5386 4046 50  0000 R CNN
 F 1 "0.1uF" H 5386 3955 50  0000 R CNN
 F 2 "Capacitor_THT:C_Disc_D4.7mm_W2.5mm_P5.00mm" H 5538 3850 50  0001 C CNN
-F 3 "~" H 5500 4000 50  0001 C CNN
+F 3 "https://www.vishay.com/docs/45171/kseries.pdf" H 5500 4000 50  0001 C CNN
+F 4 "https://www.mouser.com/ProductDetail/K104K15X7RF53H5" H 0   0   50  0001 C CNN "Link"
+F 5 "K104K15X7RF53H5" H 0   0   50  0001 C CNN "PartNumber"
 	1    5500 4000
 	1    0    0    -1  
 $EndComp
@@ -348,22 +362,22 @@ Text GLabel 1750 4850 0    50   Input ~ 0
 LED_CTL_G
 Text GLabel 1750 4000 0    50   Input ~ 0
 LED_CTL_R
-Text GLabel 4300 6250 0    50   Input ~ 0
+Text GLabel 4050 6500 0    50   Input ~ 0
 SDA
-Text GLabel 4300 6150 0    50   Input ~ 0
+Text GLabel 4050 6400 0    50   Input ~ 0
 SCL
 Wire Wire Line
-	4700 6250 4450 6250
-NoConn ~ 5700 6350
+	4450 6500 4200 6500
+NoConn ~ 5450 6600
 $Comp
 L power:GND #PWR01
 U 1 1 5CF35B2B
-P 1650 1850
-F 0 "#PWR01" H 1650 1600 50  0001 C CNN
-F 1 "GND" H 1655 1677 50  0000 C CNN
-F 2 "" H 1650 1850 50  0001 C CNN
-F 3 "" H 1650 1850 50  0001 C CNN
-	1    1650 1850
+P 1650 2100
+F 0 "#PWR01" H 1650 1850 50  0001 C CNN
+F 1 "GND" H 1655 1927 50  0000 C CNN
+F 2 "" H 1650 2100 50  0001 C CNN
+F 3 "" H 1650 2100 50  0001 C CNN
+	1    1650 2100
 	1    0    0    -1  
 $EndComp
 Text GLabel 6900 3200 2    50   Input ~ 0
@@ -377,37 +391,37 @@ Wire Wire Line
 $Comp
 L power:VCC #PWR015
 U 1 1 5CF3C5AE
-P 4650 5450
-F 0 "#PWR015" H 4650 5300 50  0001 C CNN
-F 1 "VCC" H 4667 5623 50  0000 C CNN
-F 2 "" H 4650 5450 50  0001 C CNN
-F 3 "" H 4650 5450 50  0001 C CNN
-	1    4650 5450
+P 4400 5700
+F 0 "#PWR015" H 4400 5550 50  0001 C CNN
+F 1 "VCC" H 4417 5873 50  0000 C CNN
+F 2 "" H 4400 5700 50  0001 C CNN
+F 3 "" H 4400 5700 50  0001 C CNN
+	1    4400 5700
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:VCC #PWR014
 U 1 1 5CF3C5DD
-P 4450 5450
-F 0 "#PWR014" H 4450 5300 50  0001 C CNN
-F 1 "VCC" H 4467 5623 50  0000 C CNN
-F 2 "" H 4450 5450 50  0001 C CNN
-F 3 "" H 4450 5450 50  0001 C CNN
-	1    4450 5450
+P 4200 5700
+F 0 "#PWR014" H 4200 5550 50  0001 C CNN
+F 1 "VCC" H 4217 5873 50  0000 C CNN
+F 2 "" H 4200 5700 50  0001 C CNN
+F 3 "" H 4200 5700 50  0001 C CNN
+	1    4200 5700
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	4650 5850 4650 6150
-Connection ~ 4650 6150
+	4400 6100 4400 6400
+Connection ~ 4400 6400
 Wire Wire Line
-	4650 6150 4700 6150
+	4400 6400 4450 6400
 Wire Wire Line
-	4300 6150 4650 6150
+	4050 6400 4400 6400
 Wire Wire Line
-	4450 5850 4450 6250
-Connection ~ 4450 6250
+	4200 6100 4200 6500
+Connection ~ 4200 6500
 Wire Wire Line
-	4450 6250 4300 6250
+	4200 6500 4050 6500
 $Comp
 L Device:CP1 C1
 U 1 1 5CF4313F
@@ -415,7 +429,9 @@ P 2000 1700
 F 0 "C1" H 2115 1746 50  0000 L CNN
 F 1 "10uF" H 2115 1655 50  0000 L CNN
 F 2 "Capacitor_THT:CP_Radial_D4.0mm_P1.50mm" H 2000 1700 50  0001 C CNN
-F 3 "~" H 2000 1700 50  0001 C CNN
+F 3 "http://nichicon-us.com/english/products/pdfs/e-usa_usr.pdf" H 2000 1700 50  0001 C CNN
+F 4 "https://www.mouser.com/ProductDetail/USR1E100MDD1TP" H 0   0   50  0001 C CNN "Link"
+F 5 "USR1E100MDD1TP" H 0   0   50  0001 C CNN "PartNumber"
 	1    2000 1700
 	1    0    0    -1  
 $EndComp
@@ -426,7 +442,9 @@ P 4050 1700
 F 0 "C3" H 4165 1746 50  0000 L CNN
 F 1 "0.1uF" H 4165 1655 50  0000 L CNN
 F 2 "Capacitor_THT:C_Disc_D4.7mm_W2.5mm_P5.00mm" H 4088 1550 50  0001 C CNN
-F 3 "~" H 4050 1700 50  0001 C CNN
+F 3 "https://www.vishay.com/docs/45171/kseries.pdf" H 4050 1700 50  0001 C CNN
+F 4 "https://www.mouser.com/ProductDetail/K104K15X7RF53H5" H 0   0   50  0001 C CNN "Link"
+F 5 "K104K15X7RF53H5" H 0   0   50  0001 C CNN "PartNumber"
 	1    4050 1700
 	1    0    0    -1  
 $EndComp
@@ -444,7 +462,7 @@ $EndComp
 Wire Wire Line
 	2000 1550 1650 1550
 Wire Wire Line
-	2000 1550 2000 1150
+	2000 1550 2000 1050
 Connection ~ 2000 1550
 $Comp
 L Regulator_Linear:uA7805 U1
@@ -455,6 +473,7 @@ F 1 "L4931CZ50-AP" H 2650 1701 50  0000 C CNN
 F 2 "Package_TO_SOT_THT:TO-92_Inline_Wide" H 2675 1400 50  0001 L CIN
 F 3 "https://www.st.com/resource/en/datasheet/l4931.pdf" H 2650 1500 50  0001 C CNN
 F 4 "https://www.mouser.com/ProductDetail/511-L4931CZ50-AP" H 0   0   50  0001 C CNN "Link"
+F 5 "L4931CZ50-AP" H 0   0   50  0001 C CNN "PartNumber"
 	1    2650 1550
 	1    0    0    -1  
 $EndComp
@@ -478,7 +497,9 @@ P 3600 1700
 F 0 "C2" H 3715 1746 50  0000 L CNN
 F 1 "10uF" H 3715 1655 50  0000 L CNN
 F 2 "Capacitor_THT:CP_Radial_D4.0mm_P1.50mm" H 3600 1700 50  0001 C CNN
-F 3 "~" H 3600 1700 50  0001 C CNN
+F 3 "http://nichicon-us.com/english/products/pdfs/e-usa_usr.pdf" H 3600 1700 50  0001 C CNN
+F 4 "USR1E100MDD1TP" H 3600 1700 50  0001 C CNN "PartNumber"
+F 5 "https://www.mouser.com/ProductDetail/USR1E100MDD1TP" H 0   0   50  0001 C CNN "Link"
 	1    3600 1700
 	1    0    0    -1  
 $EndComp
@@ -504,8 +525,6 @@ F 3 "" H 2000 1850 50  0001 C CNN
 	1    2000 1850
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	1650 1850 1650 1750
 $Comp
 L Device:LED D1
 U 1 1 5CF4A863
@@ -513,7 +532,9 @@ P 3050 1700
 F 0 "D1" V 3088 1583 50  0000 R CNN
 F 1 "LED" V 2997 1583 50  0000 R CNN
 F 2 "LED_THT:LED_D3.0mm" H 3050 1700 50  0001 C CNN
-F 3 "~" H 3050 1700 50  0001 C CNN
+F 3 "https://optoelectronics.liteon.com/upload/download/DS-20-92-0241/4222N.pdf" H 3050 1700 50  0001 C CNN
+F 4 "https://www.mouser.com/ProductDetail/LTL-4222N" H 0   0   50  0001 C CNN "Link"
+F 5 "LTL-4222N" H 0   0   50  0001 C CNN "PartNumber"
 	1    3050 1700
 	0    -1   -1   0   
 $EndComp
@@ -565,6 +586,7 @@ F 1 "Reset" V 8305 5562 50  0000 R CNN
 F 2 "Button_Switch_THT:SW_PUSH_6mm" H 8350 5650 50  0001 C CNN
 F 3 "https://www.alps.com/prod/info/E/HTML/Tact/SnapIn/SKHH/SKHHAJA010.html" H 8350 5650 50  0001 C CNN
 F 4 "https://www.mouser.com/ProductDetail/SKHHAJA010" H 0   0   50  0001 C CNN "Link"
+F 5 "SKHHAJA010" H 0   0   50  0001 C CNN "PartNumber"
 	1    8350 5650
 	0    -1   -1   0   
 $EndComp
@@ -573,9 +595,11 @@ L Device:R_US R4
 U 1 1 5CF5AFAC
 P 3050 2100
 F 0 "R4" H 3118 2146 50  0000 L CNN
-F 1 "10K" H 3118 2055 50  0000 L CNN
+F 1 "10k" H 3118 2055 50  0000 L CNN
 F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 3090 2090 50  0001 C CNN
-F 3 "~" H 3050 2100 50  0001 C CNN
+F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/throughhole/Yageo_LR_CFR_2013.pdf" H 3050 2100 50  0001 C CNN
+F 4 "https://www.mouser.com/ProductDetail/CFR-25JT-52-10K" H 0   0   50  0001 C CNN "Link"
+F 5 "CFR-25JT-52-10K" H 0   0   50  0001 C CNN "PartNumber"
 	1    3050 2100
 	1    0    0    -1  
 $EndComp
@@ -588,35 +612,40 @@ F 1 "16MHz" V 7500 2500 50  0000 R CNN
 F 2 "Crystal:Resonator-3Pin_W6.0mm_H3.0mm" H 7275 2600 50  0001 C CNN
 F 3 "https://www.murata.com/en-us/api/pdfdownloadapi?partno=CSTLS16M0X55-A0" H 7275 2600 50  0001 C CNN
 F 4 "https://www.mouser.com/ProductDetail/81-CSTLS16M0X55-A0" H 0   0   50  0001 C CNN "Link"
+F 5 "CSTLS16M0X55-A0" H 0   0   50  0001 C CNN "PartNumber"
 	1    7300 2600
 	0    -1   -1   0   
 $EndComp
 $Comp
 L Device:R_US R6
 U 1 1 5CF5C3E8
-P 4650 5700
-F 0 "R6" H 4718 5746 50  0000 L CNN
-F 1 "10K" H 4718 5655 50  0000 L CNN
-F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 4690 5690 50  0001 C CNN
-F 3 "~" H 4650 5700 50  0001 C CNN
-	1    4650 5700
+P 4400 5950
+F 0 "R6" H 4468 5996 50  0000 L CNN
+F 1 "10k" H 4468 5905 50  0000 L CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 4440 5940 50  0001 C CNN
+F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/throughhole/Yageo_LR_CFR_2013.pdf" H 4400 5950 50  0001 C CNN
+F 4 "https://www.mouser.com/ProductDetail/CFR-25JT-52-10K" H -250 250 50  0001 C CNN "Link"
+F 5 "CFR-25JT-52-10K" H 0   0   50  0001 C CNN "PartNumber"
+	1    4400 5950
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R_US R5
 U 1 1 5CF5C547
-P 4450 5700
-F 0 "R5" H 4383 5746 50  0000 R CNN
-F 1 "10K" H 4383 5655 50  0000 R CNN
-F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 4490 5690 50  0001 C CNN
-F 3 "~" H 4450 5700 50  0001 C CNN
-	1    4450 5700
+P 4200 5950
+F 0 "R5" H 4133 5996 50  0000 R CNN
+F 1 "10k" H 4133 5905 50  0000 R CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 4240 5940 50  0001 C CNN
+F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/throughhole/Yageo_LR_CFR_2013.pdf" H 4200 5950 50  0001 C CNN
+F 4 "https://www.mouser.com/ProductDetail/CFR-25JT-52-10K" H -250 250 50  0001 C CNN "Link"
+F 5 "CFR-25JT-52-10K" H 0   0   50  0001 C CNN "PartNumber"
+	1    4200 5950
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	4450 5550 4450 5450
+	4200 5800 4200 5700
 Wire Wire Line
-	4650 5550 4650 5450
+	4400 5800 4400 5700
 Text GLabel 7850 5350 0    50   Input ~ 0
 DTR
 $Comp
@@ -626,7 +655,9 @@ P 8100 5350
 F 0 "C6" V 7848 5350 50  0000 C CNN
 F 1 "0.1uF" V 7939 5350 50  0000 C CNN
 F 2 "Capacitor_THT:C_Disc_D4.7mm_W2.5mm_P5.00mm" H 8138 5200 50  0001 C CNN
-F 3 "~" H 8100 5350 50  0001 C CNN
+F 3 "https://www.vishay.com/docs/45171/kseries.pdf" H 8100 5350 50  0001 C CNN
+F 4 "https://www.mouser.com/ProductDetail/K104K15X7RF53H5" H 0   0   50  0001 C CNN "Link"
+F 5 "K104K15X7RF53H5" H 0   0   50  0001 C CNN "PartNumber"
 	1    8100 5350
 	0    1    1    0   
 $EndComp
@@ -646,9 +677,11 @@ L Device:R_US R8
 U 1 1 5CF89E24
 P 8350 5100
 F 0 "R8" H 8282 5146 50  0000 R CNN
-F 1 "10K" H 8282 5055 50  0000 R CNN
+F 1 "10k" H 8282 5055 50  0000 R CNN
 F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 8390 5090 50  0001 C CNN
-F 3 "~" H 8350 5100 50  0001 C CNN
+F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/throughhole/Yageo_LR_CFR_2013.pdf" H 8350 5100 50  0001 C CNN
+F 4 "https://www.mouser.com/ProductDetail/CFR-25JT-52-10K" H 0   0   50  0001 C CNN "Link"
+F 5 "CFR-25JT-52-10K" H 0   0   50  0001 C CNN "PartNumber"
 	1    8350 5100
 	-1   0    0    -1  
 $EndComp
@@ -743,7 +776,9 @@ P 9050 3800
 F 0 "J3" H 8969 3275 50  0000 C CNN
 F 1 "FTDI Basic" H 8969 3366 50  0000 C CNN
 F 2 "Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical" H 9050 3800 50  0001 C CNN
-F 3 "~" H 9050 3800 50  0001 C CNN
+F 3 "http://suddendocs.samtec.com/catalog_english/tsw_th.pdf" H 9050 3800 50  0001 C CNN
+F 4 "https://www.mouser.com/ProductDetail/TSW-106-08-T-S-RA" H 0   0   50  0001 C CNN "Link"
+F 5 "TSW-106-08-T-S-RA" H 0   0   50  0001 C CNN "PartNumber"
 	1    9050 3800
 	1    0    0    1   
 $EndComp
@@ -836,7 +871,9 @@ P 10350 3600
 F 0 "J5" H 10429 3592 50  0000 L CNN
 F 1 "Header" H 10429 3501 50  0000 L CNN
 F 2 "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical" H 10350 3600 50  0001 C CNN
-F 3 "~" H 10350 3600 50  0001 C CNN
+F 3 "http://suddendocs.samtec.com/catalog_english/tsw_th.pdf" H 10350 3600 50  0001 C CNN
+F 4 "https://www.mouser.com/ProductDetail/TSW-130-07-T-S" H 0   0   50  0001 C CNN "Link"
+F 5 "TSW-130-07-T-S" H 0   0   50  0001 C CNN "PartNumber"
 	1    10350 3600
 	1    0    0    -1  
 $EndComp
@@ -880,7 +917,9 @@ P 10350 4250
 F 0 "J6" H 10430 4242 50  0000 L CNN
 F 1 "Header" H 10430 4151 50  0000 L CNN
 F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 10350 4250 50  0001 C CNN
-F 3 "~" H 10350 4250 50  0001 C CNN
+F 3 "http://suddendocs.samtec.com/catalog_english/tsw_th.pdf" H 10350 4250 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "Link"
+F 5 "~" H 0   0   50  0001 C CNN "PartNumber"
 	1    10350 4250
 	1    0    0    -1  
 $EndComp
@@ -891,7 +930,9 @@ P 9050 2150
 F 0 "J2" H 9150 2200 50  0000 L CNN
 F 1 "Header" H 9150 2100 50  0000 L CNN
 F 2 "Connector_PinHeader_2.54mm:PinHeader_1x12_P2.54mm_Vertical" H 9050 2150 50  0001 C CNN
-F 3 "~" H 9050 2150 50  0001 C CNN
+F 3 "http://suddendocs.samtec.com/catalog_english/tsw_th.pdf" H 9050 2150 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "Link"
+F 5 "~" H 0   0   50  0001 C CNN "PartNumber"
 	1    9050 2150
 	1    0    0    -1  
 $EndComp
@@ -956,7 +997,9 @@ P 10350 2150
 F 0 "J4" H 10450 2200 50  0000 L CNN
 F 1 "Header" H 10450 2100 50  0000 L CNN
 F 2 "Connector_PinHeader_2.54mm:PinHeader_1x12_P2.54mm_Vertical" H 10350 2150 50  0001 C CNN
-F 3 "~" H 10350 2150 50  0001 C CNN
+F 3 "http://suddendocs.samtec.com/catalog_english/tsw_th.pdf" H 10350 2150 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "Link"
+F 5 "~" H 0   0   50  0001 C CNN "PartNumber"
 	1    10350 2150
 	1    0    0    -1  
 $EndComp
@@ -1070,7 +1113,9 @@ P 7100 1500
 F 0 "D2" H 7092 1716 50  0000 C CNN
 F 1 "LED" H 7092 1625 50  0000 C CNN
 F 2 "LED_THT:LED_D3.0mm" H 7100 1500 50  0001 C CNN
-F 3 "~" H 7100 1500 50  0001 C CNN
+F 3 "https://optoelectronics.liteon.com/upload/download/DS-20-92-0241/4222N.pdf" H 7100 1500 50  0001 C CNN
+F 4 "https://www.mouser.com/ProductDetail/LTL-4222N" H 0   0   50  0001 C CNN "Link"
+F 5 "LTL-4222N" H 0   0   50  0001 C CNN "PartNumber"
 	1    7100 1500
 	-1   0    0    -1  
 $EndComp
@@ -1081,7 +1126,9 @@ P 7500 1500
 F 0 "R7" V 7295 1500 50  0000 C CNN
 F 1 "330" V 7386 1500 50  0000 C CNN
 F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 7540 1490 50  0001 C CNN
-F 3 "~" H 7500 1500 50  0001 C CNN
+F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/throughhole/Yageo_LR_CFR_2013.pdf" H 7500 1500 50  0001 C CNN
+F 4 "https://www.mouser.com/ProductDetail/CFR-25JT-52-330R" H 0   0   50  0001 C CNN "Link"
+F 5 "CFR-25JT-52-330R" H 0   0   50  0001 C CNN "PartNumber"
 	1    7500 1500
 	0    1    1    0   
 $EndComp
@@ -1110,7 +1157,74 @@ Wire Wire Line
 Text GLabel 10050 3500 0    50   Input ~ 0
 RAW
 Wire Wire Line
-	2000 1150 1650 1150
-Text GLabel 1650 1150 0    50   Input ~ 0
+	2000 1050 1650 1050
+Text GLabel 1650 1050 0    50   Input ~ 0
 RAW
+$Comp
+L Graphic:Logo_Open_Hardware_Large #LOGO1
+U 1 1 5D108007
+P 10650 6050
+F 0 "#LOGO1" H 10650 6550 50  0001 C CNN
+F 1 "Logo_Open_Hardware_Large" H 10650 5650 50  0001 C CNN
+F 2 "" H 10650 6050 50  0001 C CNN
+F 3 "~" H 10650 6050 50  0001 C CNN
+	1    10650 6050
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:PWR_FLAG #FLG0101
+U 1 1 5D10CD99
+P 5200 5950
+F 0 "#FLG0101" H 5200 6025 50  0001 C CNN
+F 1 "PWR_FLAG" H 5200 6124 50  0000 C CNN
+F 2 "" H 5200 5950 50  0001 C CNN
+F 3 "~" H 5200 5950 50  0001 C CNN
+	1    5200 5950
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:PWR_FLAG #FLG0102
+U 1 1 5D12AC03
+P 2100 1050
+F 0 "#FLG0102" H 2100 1125 50  0001 C CNN
+F 1 "PWR_FLAG" V 2100 1178 50  0000 L CNN
+F 2 "" H 2100 1050 50  0001 C CNN
+F 3 "~" H 2100 1050 50  0001 C CNN
+	1    2100 1050
+	0    1    1    0   
+$EndComp
+Connection ~ 2000 1050
+$Comp
+L power:PWR_FLAG #FLG0103
+U 1 1 5D12F805
+P 1550 2000
+F 0 "#FLG0103" H 1550 2075 50  0001 C CNN
+F 1 "PWR_FLAG" V 1550 2128 50  0000 L CNN
+F 2 "" H 1550 2000 50  0001 C CNN
+F 3 "~" H 1550 2000 50  0001 C CNN
+	1    1550 2000
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	2100 1050 2000 1050
+Wire Wire Line
+	1550 2000 1650 2000
+Wire Wire Line
+	1650 2000 1650 2100
+Wire Wire Line
+	1650 1750 1650 2000
+Connection ~ 1650 2000
+Wire Wire Line
+	4950 6200 4950 6050
+Wire Wire Line
+	4950 6050 5200 6050
+Wire Wire Line
+	5800 6050 5900 6050
+Wire Wire Line
+	5900 6050 5900 6150
+Wire Wire Line
+	5200 5950 5200 6050
+Connection ~ 5200 6050
+Wire Wire Line
+	5200 6050 5500 6050
 $EndSCHEMATC
