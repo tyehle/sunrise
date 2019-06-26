@@ -35,7 +35,7 @@ This board is driven by an ATmega238P and has the a similar header layout as an 
 
 
 # Component Placement
-![front-fab](docs/doc-F.svg)
+[sunrise-assembly.pdf](docs/sunrise-assembly.pdf)
 
 
 # LICENSE
