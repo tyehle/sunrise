@@ -55,9 +55,9 @@ float colorData[DATA_SIZE][4] = {
 };
 
 // Output Pins
-int red = 9;
-int green = 10;
-int blue = 11;
+int red = 6;
+int green = 3;
+int blue = 9;
 
 /*
  * FFFFFF output = 87, 97, 185
@@ -73,7 +73,7 @@ int dayTime;
 int offTime;
 
 char out[21];
-RTC_PCF8523 rtc;
+RTC_DS1307 rtc;
 
 void setup() {
   Serial.begin(115200);
@@ -83,13 +83,14 @@ void setup() {
     exit(1);
   }
 
-  if(!rtc.initialized()) {
+  if(!rtc.isrunning()) {
     Serial.println("RTC is not running!");
     // set the time to the time this was compiled
     rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
     // set an explicit date and time
     // rtc.adjust(DateTime(2019, 1, 13, 15, 33, 0));
   }
+//  rtc.adjust(DateTime(2019, 6, 25, 20, 16, 0));
 //  rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
   Serial.print("Now: "); printlnDate(rtc.now());
 
@@ -97,11 +98,17 @@ void setup() {
   pinMode(green, OUTPUT);
   pinMode(blue, OUTPUT);
 
-  wakeTime = daySeconds(DateTime(1970, 01, 01, 07, 15, 0));
+  wakeTime = daySeconds(DateTime(1970, 01, 01, 06, 30, 0));
 //  wakeTime = daySeconds(DateTime(F(__DATE__), F(__TIME__)));
   upTime   = wakeTime + 60*30;
   dayTime  = upTime + 60*30;
   offTime  = dayTime + 60*30;
+
+////  wakeTime = daySeconds(DateTime(F(__DATE__), F(__TIME__)));
+//  wakeTime = daySeconds(DateTime(1970, 01, 01, 20, 26, 0));
+//  upTime   = wakeTime + 30;
+//  dayTime  = upTime + 30;
+//  offTime  = dayTime + 30;
 }
 
 // Brightness scalar [0, 1] for a time on [0, 1]
