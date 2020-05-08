@@ -75,6 +75,10 @@ int offTime;
 char out[21];
 RTC_DS1307 rtc;
 
+// flash once with this set to reset the clock, then flash again with
+// it false so the board doesn't set the clock on every boot
+bool reset_clock = false;
+
 void setup() {
   Serial.begin(115200);
 
@@ -83,29 +87,27 @@ void setup() {
     exit(1);
   }
 
-  if(!rtc.isrunning()) {
-    Serial.println("RTC is not running!");
+  if(!rtc.isrunning() || reset_clock) {
+    Serial.println("Resetting RTC clock!");
     // set the time to the time this was compiled
-    rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
+    rtc.adjust(DateTime(F(__DATE__), F(__TIME__)) + TimeSpan(14)); // it takes ~14 seconds to program and reset the board
     // set an explicit date and time
-    // rtc.adjust(DateTime(2019, 1, 13, 15, 33, 0));
+//    rtc.adjust(DateTime(2019, 6, 25, 20, 16, 0));
   }
-//  rtc.adjust(DateTime(2019, 6, 25, 20, 16, 0));
-//  rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
   Serial.print("Now: "); printlnDate(rtc.now());
 
   pinMode(red, OUTPUT);
   pinMode(green, OUTPUT);
   pinMode(blue, OUTPUT);
 
-  wakeTime = daySeconds(DateTime(1970, 01, 01, 06, 30, 0));
+  wakeTime = daySeconds(DateTime(1970, 01, 01, 05, 15, 0));
 //  wakeTime = daySeconds(DateTime(F(__DATE__), F(__TIME__)));
   upTime   = wakeTime + 60*30;
-  dayTime  = upTime + 60*30;
+  dayTime  = upTime + 60*15;
   offTime  = dayTime + 60*30;
 
 ////  wakeTime = daySeconds(DateTime(F(__DATE__), F(__TIME__)));
-//  wakeTime = daySeconds(DateTime(1970, 01, 01, 20, 26, 0));
+//  wakeTime = daySeconds(DateTime(1970, 01, 01, 11, 9, 00));
 //  upTime   = wakeTime + 30;
 //  dayTime  = upTime + 30;
 //  offTime  = dayTime + 30;
