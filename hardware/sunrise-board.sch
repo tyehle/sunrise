@@ -196,7 +196,7 @@ L Device:Crystal Y1
 U 1 1 5CF1EFD4
 P 4200 6850
 F 0 "Y1" V 4150 6700 50  0000 R CNN
-F 1 "32.768Hz" V 4250 6700 50  0000 R CNN
+F 1 "32.768kHz" V 4250 6700 50  0000 R CNN
 F 2 "Crystal:Crystal_C26-LF_D2.1mm_L6.5mm_Horizontal_1EP_style2" H 4200 6850 50  0001 C CNN
 F 3 "https://www.iqdfrequencyproducts.com/products/pn/LFXTAL002997Bulk.pdf" H 4200 6850 50  0001 C CNN
 F 4 "https://www.mouser.com/ProductDetail/449-LFXTAL002997BULK" H -250 250 50  0001 C CNN "Link"
