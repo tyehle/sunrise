@@ -5,6 +5,7 @@
 
 #define DATA_SIZE 36
 
+
 float colorData[DATA_SIZE][4] = {
   {1000,1.0,0.0401,0.0},
   {1100,1.0,0.0631,0.0},
@@ -55,17 +56,17 @@ float colorData[DATA_SIZE][4] = {
 };
 
 // Output Pins
-int red = 6;
-int green = 3;
-int blue = 9;
+int red = 9;
+int green = 6;
+int blue = 3;
 
 /*
  * FFFFFF output = 87, 97, 185
  * normalized white = 255, 229, 120
  */
-int rMax = 255;
-int gMax = 229;
-int bMax = 120;
+double rMax = 255 / 256.0;
+double gMax = 229 / 256.0;
+double bMax = 120 / 256.0;
 
 int wakeTime;
 int upTime;
@@ -77,7 +78,7 @@ RTC_DS1307 rtc;
 
 // flash once with this set to reset the clock, then flash again with
 // it false so the board doesn't set the clock on every boot
-bool reset_clock = false;
+bool reset_clock = true;
 
 void setup() {
   Serial.begin(115200);
@@ -96,22 +97,59 @@ void setup() {
   }
   Serial.print("Now: "); printlnDate(rtc.now());
 
-  pinMode(red, OUTPUT);
+  setupPWM16();
   pinMode(green, OUTPUT);
   pinMode(blue, OUTPUT);
 
-  wakeTime = daySeconds(DateTime(1970, 01, 01, 05, 15, 0));
-//  wakeTime = daySeconds(DateTime(F(__DATE__), F(__TIME__)));
-  upTime   = wakeTime + 60*30;
-  dayTime  = upTime + 60*15;
-  offTime  = dayTime + 60*30;
+////  wakeTime = daySeconds(DateTime(1970, 1, 1, 9, 0, 0));
+//  wakeTime = daySeconds(DateTime(F(__DATE__), F(__TIME__)) + TimeSpan(14));
+//  upTime   = wakeTime + 60*30;
+//  dayTime  = upTime + 60*60;
+//  offTime  = dayTime + 60*30;
 
-////  wakeTime = daySeconds(DateTime(F(__DATE__), F(__TIME__)));
 //  wakeTime = daySeconds(DateTime(1970, 01, 01, 11, 9, 00));
-//  upTime   = wakeTime + 30;
-//  dayTime  = upTime + 30;
-//  offTime  = dayTime + 30;
+  wakeTime = daySeconds(DateTime(F(__DATE__), F(__TIME__)) + TimeSpan(14));
+  upTime   = wakeTime + 30;
+  dayTime  = upTime + 10;
+  offTime  = dayTime + 30;
 }
+
+
+
+
+/* ---------- 16 Bit PWM ---------- */
+/* Configure digital pins 9 and 10 as 16-bit PWM outputs. */
+void setupPWM16() {
+  DDRB |= _BV(PB1) | _BV(PB2);        /* set pins as outputs */
+  TCCR1A = _BV(COM1A1) | _BV(COM1B1)  /* non-inverting PWM */
+    | _BV(WGM11);                     /* mode 14: fast PWM, TOP=ICR1 */
+  TCCR1B = _BV(WGM13) | _BV(WGM12)
+    | _BV(CS10);                      /* no prescaling */
+  ICR1 = 0xffff;                      /* TOP counter value */
+}
+/* 16-bit version of analogWrite(). Works only on pins 9 and 10. */
+void analogWrite16(uint8_t pin, uint16_t val)
+{
+    switch (pin) {
+        case  9: OCR1A = val; break;
+        case 10: OCR1B = val; break;
+    }
+}
+/* Write a 0-1 float as best we can as a pwm output */
+void writePWM(uint8_t pin, double value) {
+  switch(pin) {
+    case  9: OCR1A = ratioToRange(value, 65536); break;
+    case 10: OCR1B = ratioToRange(value, 65536); break;
+    default: analogWrite(pin, ratioToRange(value, 256)); break;
+  }
+}
+/* Convert a ratio into an int range */
+uint32_t ratioToRange(double ratio, uint32_t top) {
+  return max(0, min(top, (uint32_t)(ratio * top)));
+}
+/**/
+
+
 
 // Brightness scalar [0, 1] for a time on [0, 1]
 double brightness(double t) {
@@ -134,15 +172,15 @@ double color(int channel, double b, double h) {
 }
 
 // Set the lights for a time value on [0, 1]
-void set_lights(double power, double hue, bool chatty) {
+void setLights(double power, double hue, bool chatty) {
   if(power < 0) power = 0;
   if(power > 1) power = 1;
   if(hue < 0) hue = 0;
   if(hue > 1) hue = 1;
   
-  int r = (int)(color(1, power, hue) * rMax);
-  int g = (int)(color(2, power, hue) * gMax);
-  int b = (int)(color(3, power, hue) * bMax);
+  double r = color(1, power, hue) * rMax;
+  double g = color(2, power, hue) * gMax;
+  double b = color(3, power, hue) * bMax;
 
   if(chatty) {
     Serial.print(power); Serial.print(",\t");
@@ -152,10 +190,13 @@ void set_lights(double power, double hue, bool chatty) {
     Serial.print(b); Serial.print("\n");
   }
 
-  analogWrite(red,   r);
-  analogWrite(green, g);
-  analogWrite(blue,  b);
+  writePWM(red, r);
+  writePWM(green, g);
+  writePWM(blue, b);
 }
+
+
+
 
 void printlnDate(DateTime date) {
   sprintf(out, "%04d-%02d-%02dT%02d:%02d:%02d\n",
@@ -168,50 +209,69 @@ int daySeconds(DateTime date) {
   return date.hour() * 3600 + date.minute() * 60 + date.second();
 }
 
+
+
+
 void loop() {
   // What mode are we in?
   int now = daySeconds(rtc.now());
   if(wakeTime <= now && now < upTime) {
     Serial.println("Waking up");
-    wake_update();
-    delay(1000);
+    wakeUpdate();
   } else if(upTime <= now && now < dayTime) {
     Serial.println("Holding");
-    up_update();
-    delay(1000);
+    upUpdate();
   } else if(dayTime <= now && now < offTime) {
     Serial.println("powering down");
-    day_update();
-    delay(1000);
+    dayUpdate();
   } else {
     Serial.println("Off");
-    off_update();
-    delay(1000);
+    offUpdate();
   }
 }
 
 // modes: waking, on, dimming, off
 
-void wake_update() {
+void wakeUpdate() {
   int span = upTime - wakeTime;
   int howFar = daySeconds(rtc.now()) - wakeTime;
-  double t = howFar / (double)span;
-  set_lights(t, t, true);
+  
+  unsigned long startTime = millis();
+  unsigned long elapsed = 0;
+  double t = (howFar + (elapsed/1000.0)) / (double)span;
+  // Set the lights only once in chatty mode
+  setLights(t, t, true);
+  
+  do {
+    elapsed = millis() - startTime;
+    t = (howFar + (elapsed/1000.0)) / (double)span;
+    setLights(t, t, false);
+  } while(elapsed < 1000);
 }
 
-void up_update() {
-  set_lights(1, 1, false);
+void upUpdate() {
+  setLights(1, 1, false);
+  delay(1000);
 }
 
-void day_update() {
+void dayUpdate() {
   int span = offTime - dayTime;
   int howFar = daySeconds(rtc.now()) - dayTime;
-  double t = 1 - (howFar / (double)span);
-  set_lights(t, 1, true);
+
+  unsigned long startTime = millis();
+  unsigned long elapsed = 0;
+  double t = (howFar + (elapsed/1000.0)) / (double)span;
+  // Set the lights only once in chatty mode
+  setLights(1 - t, 1, true);
+  
+  do {
+    elapsed = millis() - startTime;
+    t = (howFar + (elapsed/1000.0)) / (double)span;
+    setLights(1 - t, 1, false);
+  } while(elapsed < 1000);
 }
 
-void off_update() {
-  set_lights(0, 0, false);
+void offUpdate() {
+  setLights(0, 0, false);
+  delay(1000);
 }
-
-
