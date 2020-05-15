@@ -98,20 +98,21 @@ void setup() {
   Serial.print("Now: "); printlnDate(rtc.now());
 
   setupPWM16();
-  pinMode(green, OUTPUT);
-  pinMode(blue, OUTPUT);
+  writePWM(red, 0.0);
+  writePWM(green, 0.0);
+  writePWM(blue, 0.0);
 
-////  wakeTime = daySeconds(DateTime(1970, 1, 1, 9, 0, 0));
-//  wakeTime = daySeconds(DateTime(F(__DATE__), F(__TIME__)) + TimeSpan(14));
-//  upTime   = wakeTime + 60*30;
-//  dayTime  = upTime + 60*60;
-//  offTime  = dayTime + 60*30;
+  // wakeTime = daySeconds(DateTime(1970, 1, 1, 9, 0, 0));
+  wakeTime = daySeconds(DateTime(F(__DATE__), F(__TIME__)) + TimeSpan(17));
+  upTime   = wakeTime + 60*30;
+  dayTime  = upTime + 60*60;
+  offTime  = dayTime + 60*30;
 
-//  wakeTime = daySeconds(DateTime(1970, 01, 01, 11, 9, 00));
-  wakeTime = daySeconds(DateTime(F(__DATE__), F(__TIME__)) + TimeSpan(14));
-  upTime   = wakeTime + 30;
-  dayTime  = upTime + 10;
-  offTime  = dayTime + 30;
+  // // wakeTime = daySeconds(DateTime(1970, 01, 01, 11, 9, 00));
+  // wakeTime = daySeconds(DateTime(F(__DATE__), F(__TIME__)) + TimeSpan(17));
+  // upTime   = wakeTime + 30;
+  // dayTime  = upTime + 10;
+  // offTime  = dayTime + 30;
 }
 
 
@@ -120,34 +121,54 @@ void setup() {
 /* ---------- 16 Bit PWM ---------- */
 /* Configure digital pins 9 and 10 as 16-bit PWM outputs. */
 void setupPWM16() {
-  DDRB |= _BV(PB1) | _BV(PB2);        /* set pins as outputs */
   TCCR1A = _BV(COM1A1) | _BV(COM1B1)  /* non-inverting PWM */
     | _BV(WGM11);                     /* mode 14: fast PWM, TOP=ICR1 */
-  TCCR1B = _BV(WGM13) | _BV(WGM12)
+  TCCR1B = _BV(WGM13) | _BV(WGM12)    /* other bits for mode 14 */
     | _BV(CS10);                      /* no prescaling */
   ICR1 = 0xffff;                      /* TOP counter value */
 }
+
 /* 16-bit version of analogWrite(). Works only on pins 9 and 10. */
 void analogWrite16(uint8_t pin, uint16_t val)
 {
+  pinMode(pin, OUTPUT);
+
+  // PWM outputs cannot be fully on or off, so we'll use digital write to make that happen
+  if(val == 0) {
+    digitalWrite(pin, LOW);
+  } else if(val == 65535) {
+    digitalWrite(pin, HIGH);
+  } else {
     switch (pin) {
-        case  9: OCR1A = val; break;
-        case 10: OCR1B = val; break;
+      case  9:
+        _SFR_BYTE(TCCR1A) |= _BV(COM1A1);
+        ICR1 = 0xffff;
+        OCR1A = val;
+        break;
+
+      case 10:
+        _SFR_BYTE(TCCR1A) |= _BV(COM1B1);
+        ICR1 = 0xffff;
+        OCR1B = val;
+        break;
+
+      default:
+        return;
     }
+  }
 }
 /* Write a 0-1 float as best we can as a pwm output */
 void writePWM(uint8_t pin, double value) {
-  switch(pin) {
-    case  9: OCR1A = ratioToRange(value, 65536); break;
-    case 10: OCR1B = ratioToRange(value, 65536); break;
-    default: analogWrite(pin, ratioToRange(value, 256)); break;
+  if(pin != 9 && pin != 10) {
+    analogWrite(pin, ratioToRange(value, 256));
+  } else {
+    analogWrite16(pin, ratioToRange(value, 65536));
   }
 }
 /* Convert a ratio into an int range */
 uint32_t ratioToRange(double ratio, uint32_t top) {
   return max(0, min(top, (uint32_t)(ratio * top)));
 }
-/**/
 
 
 
@@ -177,7 +198,7 @@ void setLights(double power, double hue, bool chatty) {
   if(power > 1) power = 1;
   if(hue < 0) hue = 0;
   if(hue > 1) hue = 1;
-  
+
   double r = color(1, power, hue) * rMax;
   double g = color(2, power, hue) * gMax;
   double b = color(3, power, hue) * bMax;
@@ -211,8 +232,18 @@ int daySeconds(DateTime date) {
 
 
 
+void flashGreen() {
+  writePWM(green, 1.0/255.0);
+  delay(250);
+  writePWM(green, 0);
+}
+
+
 
 void loop() {
+//  flashGreen();
+//  while(true) {}
+
   // What mode are we in?
   int now = daySeconds(rtc.now());
   if(wakeTime <= now && now < upTime) {
@@ -235,13 +266,13 @@ void loop() {
 void wakeUpdate() {
   int span = upTime - wakeTime;
   int howFar = daySeconds(rtc.now()) - wakeTime;
-  
-  unsigned long startTime = millis();
-  unsigned long elapsed = 0;
+
+  long startTime = millis();
+  long elapsed = 0;
   double t = (howFar + (elapsed/1000.0)) / (double)span;
   // Set the lights only once in chatty mode
   setLights(t, t, true);
-  
+
   do {
     elapsed = millis() - startTime;
     t = (howFar + (elapsed/1000.0)) / (double)span;
@@ -258,12 +289,12 @@ void dayUpdate() {
   int span = offTime - dayTime;
   int howFar = daySeconds(rtc.now()) - dayTime;
 
-  unsigned long startTime = millis();
-  unsigned long elapsed = 0;
+  long startTime = millis();
+  long elapsed = 0;
   double t = (howFar + (elapsed/1000.0)) / (double)span;
   // Set the lights only once in chatty mode
   setLights(1 - t, 1, true);
-  
+
   do {
     elapsed = millis() - startTime;
     t = (howFar + (elapsed/1000.0)) / (double)span;
