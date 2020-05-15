@@ -197,19 +197,15 @@ void loop() {
   if(wakeTime <= now && now < upTime) {
     Serial.println("Waking up");
     doUpdate(1, true, wakeTime, upTime - wakeTime);
-    // wakeUpdate();
   } else if(upTime <= now && now < dayTime) {
     Serial.println("Holding");
     doUpdate(2, false, upTime, dayTime - upTime);
-    // upUpdate();
   } else if(dayTime <= now && now < offTime) {
     Serial.println("powering down");
     doUpdate(3, true, dayTime, offTime - dayTime);
-    // dayUpdate();
   } else {
     Serial.println("Off");
     doUpdate(0, false, offTime, wakeTime + (24*60*60) - offTime);
-    // offUpdate();
   }
 }
 
@@ -255,50 +251,4 @@ void setModeLights(uint8_t mode, double t) {
     case 3:
       setLights(1 - t, 1, false);
   }
-}
-
-// modes: waking, on, dimming, off
-
-void wakeUpdate() {
-  int span = upTime - wakeTime;
-  int howFar = daySeconds(rtc.now()) - wakeTime;
-
-  long startTime = millis();
-  long elapsed = 0;
-  double t = (howFar + (elapsed/1000.0)) / (double)span;
-  // Set the lights only once in chatty mode
-  setLights(t, t, true);
-
-  do {
-    elapsed = millis() - startTime;
-    t = (howFar + (elapsed/1000.0)) / (double)span;
-    setLights(t, t, false);
-  } while(elapsed < 1000);
-}
-
-void upUpdate() {
-  setLights(1, 1, false);
-  delay(1000);
-}
-
-void dayUpdate() {
-  int span = offTime - dayTime;
-  int howFar = daySeconds(rtc.now()) - dayTime;
-
-  long startTime = millis();
-  long elapsed = 0;
-  double t = (howFar + (elapsed/1000.0)) / (double)span;
-  // Set the lights only once in chatty mode
-  setLights(1 - t, 1, true);
-
-  do {
-    elapsed = millis() - startTime;
-    t = (howFar + (elapsed/1000.0)) / (double)span;
-    setLights(1 - t, 1, false);
-  } while(elapsed < 1000);
-}
-
-void offUpdate() {
-  setLights(0, 0, false);
-  delay(1000);
 }
