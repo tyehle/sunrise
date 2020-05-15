@@ -3,6 +3,8 @@
 
 #include "RTClib.h"
 
+#include "pwm.h"
+
 #define DATA_SIZE 36
 
 
@@ -73,7 +75,6 @@ int upTime;
 int dayTime;
 int offTime;
 
-char out[21];
 RTC_DS1307 rtc;
 
 // flash once with this set to reset the clock, then flash again with
@@ -97,6 +98,7 @@ void setup() {
   }
   Serial.print("Now: "); printlnDate(rtc.now());
 
+  // Setup the output channels
   setupPWM16();
   writePWM(red, 0.0);
   writePWM(green, 0.0);
@@ -117,61 +119,6 @@ void setup() {
 
 
 
-
-/* ---------- 16 Bit PWM ---------- */
-/* Configure digital pins 9 and 10 as 16-bit PWM outputs. */
-void setupPWM16() {
-  TCCR1A = _BV(COM1A1) | _BV(COM1B1)  /* non-inverting PWM */
-    | _BV(WGM11);                     /* mode 14: fast PWM, TOP=ICR1 */
-  TCCR1B = _BV(WGM13) | _BV(WGM12)    /* other bits for mode 14 */
-    | _BV(CS10);                      /* no prescaling */
-  ICR1 = 0xffff;                      /* TOP counter value */
-}
-
-/* 16-bit version of analogWrite(). Works only on pins 9 and 10. */
-void analogWrite16(uint8_t pin, uint16_t val)
-{
-  pinMode(pin, OUTPUT);
-
-  // PWM outputs cannot be fully on or off, so we'll use digital write to make that happen
-  if(val == 0) {
-    digitalWrite(pin, LOW);
-  } else if(val == 65535) {
-    digitalWrite(pin, HIGH);
-  } else {
-    switch (pin) {
-      case  9:
-        _SFR_BYTE(TCCR1A) |= _BV(COM1A1);
-        ICR1 = 0xffff;
-        OCR1A = val;
-        break;
-
-      case 10:
-        _SFR_BYTE(TCCR1A) |= _BV(COM1B1);
-        ICR1 = 0xffff;
-        OCR1B = val;
-        break;
-
-      default:
-        return;
-    }
-  }
-}
-/* Write a 0-1 float as best we can as a pwm output */
-void writePWM(uint8_t pin, double value) {
-  if(pin != 9 && pin != 10) {
-    analogWrite(pin, ratioToRange(value, 256));
-  } else {
-    analogWrite16(pin, ratioToRange(value, 65536));
-  }
-}
-/* Convert a ratio into an int range */
-uint32_t ratioToRange(double ratio, uint32_t top) {
-  return max(0, min(top, (uint32_t)(ratio * top)));
-}
-
-
-
 // Brightness scalar [0, 1] for a time on [0, 1]
 double brightness(double t) {
   double k = 0.5;
@@ -179,7 +126,7 @@ double brightness(double t) {
   return min(1.0, k * log(t + 1/u) + k * log(u));
 }
 
-// Brightness [0, 1] of a color chanel (1, 2, 3) for a time t on [0, 1]
+// Brightness [0, 1] of a color channel (1, 2, 3) for a time t on [0, 1]
 double color(int channel, double b, double h) {
   double howBright = brightness(b);
   double dataTime = h * (DATA_SIZE - 1);
@@ -220,6 +167,7 @@ void setLights(double power, double hue, bool chatty) {
 
 
 void printlnDate(DateTime date) {
+  char out[21];
   sprintf(out, "%04d-%02d-%02dT%02d:%02d:%02d\n",
           date.year(), date.month(), date.day(),
           date.hour(), date.minute(), date.second());
@@ -248,16 +196,64 @@ void loop() {
   int now = daySeconds(rtc.now());
   if(wakeTime <= now && now < upTime) {
     Serial.println("Waking up");
-    wakeUpdate();
+    doUpdate(1, true, wakeTime, upTime - wakeTime);
+    // wakeUpdate();
   } else if(upTime <= now && now < dayTime) {
     Serial.println("Holding");
-    upUpdate();
+    doUpdate(2, false, upTime, dayTime - upTime);
+    // upUpdate();
   } else if(dayTime <= now && now < offTime) {
     Serial.println("powering down");
-    dayUpdate();
+    doUpdate(3, true, dayTime, offTime - dayTime);
+    // dayUpdate();
   } else {
     Serial.println("Off");
-    offUpdate();
+    doUpdate(0, false, offTime, wakeTime + (24*60*60) - offTime);
+    // offUpdate();
+  }
+}
+
+
+void doUpdate(uint8_t mode, bool hiRes, long modeStartTime, long modeLenth) {
+  double howFar = daySeconds(rtc.now()) - modeStartTime;
+  long startTime = millis();
+  long elapsed = 0;
+  double t;
+
+  if(hiRes) {
+    do {
+      t = (howFar + (elapsed/1000.0)) / (double)modeLenth;
+      setModeLights(mode, t);
+
+      if(!hiRes) {
+        delay(1000);
+      }
+
+      elapsed = millis() - startTime;
+    } while(elapsed < 1000);
+  }
+}
+
+void setModeLights(uint8_t mode, double t) {
+  switch(mode) {
+    // Off
+    case 0:
+      setLights(0, 0, false);
+      break;
+
+    // Wake
+    case 1:
+      setLights(t, t, false);
+      break;
+
+    // On
+    case 2:
+      setLights(1, 1, false);
+      break;
+
+    // Fade
+    case 3:
+      setLights(1 - t, 1, false);
   }
 }
 
