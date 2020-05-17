@@ -15,6 +15,7 @@ widths.
 
 */
 
+#include <Arduino.h>
 
 /* Configure digital pins 9 and 10 as 16-bit PWM outputs. */
 void setupPWM16() {
@@ -57,6 +58,10 @@ void analogWrite16(uint8_t pin, uint16_t val)
   }
 }
 
+/* Convert a ratio into an int range */
+uint32_t ratioToRange(double ratio, uint32_t top) {
+  return max(0, min(top, (uint32_t)(ratio * top)));
+}
 
 /* Write a 0-1 float as best we can as a pwm output */
 void writePWM(uint8_t pin, double value) {
@@ -65,10 +70,4 @@ void writePWM(uint8_t pin, double value) {
   } else {
     analogWrite16(pin, ratioToRange(value, 65536));
   }
-}
-
-
-/* Convert a ratio into an int range */
-uint32_t ratioToRange(double ratio, uint32_t top) {
-  return max(0, min(top, (uint32_t)(ratio * top)));
 }
