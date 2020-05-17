@@ -79,7 +79,7 @@ RTC_DS1307 rtc;
 
 // flash once with this set to reset the clock, then flash again with
 // it false so the board doesn't set the clock on every boot
-bool reset_clock = true;
+bool reset_clock = false;
 
 void setup() {
   Serial.begin(115200);
@@ -104,8 +104,8 @@ void setup() {
   writePWM(green, 0.0);
   writePWM(blue, 0.0);
 
-  // wakeTime = daySeconds(DateTime(1970, 1, 1, 9, 0, 0));
-  wakeTime = daySeconds(DateTime(F(__DATE__), F(__TIME__)) + TimeSpan(17));
+  wakeTime = daySeconds(DateTime(1970, 1, 1, 9, 0, 0));
+  // wakeTime = daySeconds(DateTime(F(__DATE__), F(__TIME__)) + TimeSpan(17));
   upTime   = wakeTime + 60*30;
   dayTime  = upTime + 60*60;
   offTime  = dayTime + 60*30;
@@ -216,18 +216,16 @@ void doUpdate(uint8_t mode, bool hiRes, long modeStartTime, long modeLenth) {
   long elapsed = 0;
   double t;
 
-  if(hiRes) {
-    do {
-      t = (howFar + (elapsed/1000.0)) / (double)modeLenth;
-      setModeLights(mode, t);
+  do {
+    t = (howFar + (elapsed/1000.0)) / (double)modeLenth;
+    setModeLights(mode, t);
 
-      if(!hiRes) {
-        delay(1000);
-      }
+    if(!hiRes) {
+      delay(1000);
+    }
 
-      elapsed = millis() - startTime;
-    } while(elapsed < 1000);
-  }
+    elapsed = millis() - startTime;
+  } while(elapsed < 1000);
 }
 
 void setModeLights(uint8_t mode, double t) {
