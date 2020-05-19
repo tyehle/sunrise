@@ -104,26 +104,26 @@ void setup() {
   writePWM(green, 0.0);
   writePWM(blue, 0.0);
 
-  wakeTime = daySeconds(DateTime(1970, 1, 1, 9, 0, 0));
+  wakeTime = daySeconds(DateTime(1970, 1, 1, 8, 30, 0));
   // wakeTime = daySeconds(DateTime(F(__DATE__), F(__TIME__)) + TimeSpan(17));
   upTime   = wakeTime + 60*30;
   dayTime  = upTime + 60*60;
   offTime  = dayTime + 60*30;
 
-  // // wakeTime = daySeconds(DateTime(1970, 01, 01, 11, 9, 00));
+  // // wakeTime = daySeconds(DateTime(1970, 01, 01, 10, 2, 00));
   // wakeTime = daySeconds(DateTime(F(__DATE__), F(__TIME__)) + TimeSpan(17));
-  // upTime   = wakeTime + 30;
-  // dayTime  = upTime + 10;
-  // offTime  = dayTime + 30;
+  // upTime   = wakeTime + 60;
+  // dayTime  = upTime + 20;
+  // offTime  = dayTime + 60;
 }
 
 
 
 // Brightness scalar [0, 1] for a time on [0, 1]
 double brightness(double t) {
-  double k = 0.5;
-  double u = exp(1/k) - 1;
-  return min(1.0, k * log(t + 1/u) + k * log(u));
+  double k = 0.125;
+  double a = log(1/k + 1);
+  return k * (exp(t * a) - 1);
 }
 
 // Brightness [0, 1] of a color channel (1, 2, 3) for a time t on [0, 1]
@@ -215,10 +215,12 @@ void doUpdate(uint8_t mode, bool hiRes, long modeStartTime, long modeLenth) {
   long startTime = millis();
   long elapsed = 0;
   double t;
+  bool shouldTalk = true;
 
   do {
     t = (howFar + (elapsed/1000.0)) / (double)modeLenth;
-    setModeLights(mode, t);
+    setModeLights(mode, t, shouldTalk);
+    shouldTalk = false;
 
     if(!hiRes) {
       delay(1000);
@@ -228,7 +230,7 @@ void doUpdate(uint8_t mode, bool hiRes, long modeStartTime, long modeLenth) {
   } while(elapsed < 1000);
 }
 
-void setModeLights(uint8_t mode, double t) {
+void setModeLights(uint8_t mode, double t, bool chatty) {
   switch(mode) {
     // Off
     case 0:
@@ -237,7 +239,7 @@ void setModeLights(uint8_t mode, double t) {
 
     // Wake
     case 1:
-      setLights(t, t, false);
+      setLights(t, t, chatty);
       break;
 
     // On
@@ -247,6 +249,6 @@ void setModeLights(uint8_t mode, double t) {
 
     // Fade
     case 3:
-      setLights(1 - t, 1, false);
+      setLights(1 - t, 1, chatty);
   }
 }
