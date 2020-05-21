@@ -70,10 +70,10 @@ double rMax = 255 / 256.0;
 double gMax = 229 / 256.0;
 double bMax = 120 / 256.0;
 
-int wakeTime;
-int upTime;
-int dayTime;
-int offTime;
+uint32_t wakeTime;
+uint32_t upTime;
+uint32_t dayTime;
+uint32_t offTime;
 
 RTC_DS1307 rtc;
 
@@ -115,6 +115,15 @@ void setup() {
   // upTime   = wakeTime + 60;
   // dayTime  = upTime + 20;
   // offTime  = dayTime + 60;
+
+  Serial.print("Hour:   "); Serial.println(rtc.now().hour());
+  Serial.print("Minute: "); Serial.println(rtc.now().minute());
+  Serial.print("Second: "); Serial.println(rtc.now().second());
+  Serial.print("Now Seconds:  "); Serial.println(daySeconds(rtc.now()));
+  Serial.print("Wake Seconds: "); Serial.println(wakeTime);
+  Serial.print("Up Seconds:   "); Serial.println(upTime);
+  Serial.print("Day Seconds:  "); Serial.println(dayTime);
+  Serial.print("Off Seconds:  "); Serial.println(offTime);
 }
 
 
@@ -174,8 +183,8 @@ void printlnDate(DateTime date) {
   Serial.print(out);
 }
 
-int daySeconds(DateTime date) {
-  return date.hour() * 3600 + date.minute() * 60 + date.second();
+uint32_t daySeconds(DateTime date) {
+  return (uint32_t)date.hour() * 3600 + date.minute() * 60 + date.second();
 }
 
 
@@ -193,7 +202,7 @@ void loop() {
 //  while(true) {}
 
   // What mode are we in?
-  int now = daySeconds(rtc.now());
+  uint32_t now = daySeconds(rtc.now());
   if(wakeTime <= now && now < upTime) {
     Serial.println("Waking up");
     doUpdate(1, true, wakeTime, upTime - wakeTime);
