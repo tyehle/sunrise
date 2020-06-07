@@ -1,10 +1,18 @@
 """Averages the color data found in sunrise-data.csv"""
 
 import math
+from typing import Tuple
+
 import matplotlib.pyplot as plt
 from matplotlib import animation
 import pandas
-from typing import Tuple
+
+plt.rcParams["font.family"] = "Open Sans"
+title_font_settings = {
+    "fontname": "Open Sans Condensed",
+    "fontweight": "bold",
+    "fontsize": 16,
+}
 
 
 def read_data() -> pandas.DataFrame:
@@ -23,7 +31,7 @@ def read_data() -> pandas.DataFrame:
     plt.plot(data["T"], data["R"], "r", linestyle=(0, (8, 4)))
     plt.plot(data["T"], data["G"], "g", linestyle=(0, (6, 2, 2, 2)))
     plt.plot(data["T"], data["B"], "b", linestyle=(0, (2, 1)))
-    plt.title("Blackbody RGB Color")
+    plt.title("Blackbody RGB Color", **title_font_settings)
     plt.xticks([x * 1000 for x in range(11)])
     plt.xlim(1000, 10000)
     plt.xlabel("Temperature / K")
@@ -50,7 +58,7 @@ def plot_brightness() -> None:
         p, q = k.as_integer_ratio()
         label = f"k = {p}" if q == 1 else f"k = {p}/{q}"
         plt.plot(ts, bs, label=label, linestyle=style, color=color)
-    plt.title("Exponential Brightness Function")
+    plt.title("Exponential Brightness Function", **title_font_settings)
     plt.ylabel("Brightness")
     plt.xlabel("Time")
     plt.xlim(0, 1)
