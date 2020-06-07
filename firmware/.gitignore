@@ -2,3 +2,5 @@
 *.hex
 
 .vscode/
+
+.mypy_cache/
