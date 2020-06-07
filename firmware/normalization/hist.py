@@ -4,7 +4,6 @@ import matplotlib
 import matplotlib.pyplot as plt
 import PIL.Image
 
-# plt.rcParams["font.family"] = "Source Serif Pro"
 plt.rcParams["font.family"] = "Open Sans"
 title_font_settings = {
     "fontname": "Open Sans Condensed",
