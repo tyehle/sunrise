@@ -36,7 +36,7 @@ def plot_image_hist(filepath: str) -> None:
     fig, axes = plt.subplots(
         3, sharey=True, sharex=True, gridspec_kw={"hspace": 0}
     )
-    fig.suptitle("White Color Histogram", **title_font_settings)
+    fig.suptitle("LED Full Power Histogram", **title_font_settings)
     plot_channel(r, axes[0], color="r", label="Red")
     plot_channel(g, axes[1], color="g", label="Green")
     plot_channel(b, axes[2], color="b", label="Blue")
